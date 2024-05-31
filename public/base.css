@@ -1,0 +1,69 @@
+
+body {
+    background: black;
+    color: white;
+
+    font-family: "Times New Roman", Times, serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    background: #222222;
+
+    padding: 5px;
+}
+
+header a {
+    color: aqua;
+}
+
+main {
+    max-width: 800px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+footer {
+    text-align: center;
+}
+
+section#theList {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.chip {
+    background-color: dimgray;
+    padding: 5px;
+}
+
+.chip img {
+    width: 372px;
+    height: 230px;
+    object-fit: contain;
+}
+
+.chip .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info p {
+    margin: 0;
+}
+
+.info h3 {
+    margin: 0;
+}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+<%- include('../partials/header') %>
+
+<main>
+<!--            <audio src="/backlog/8bit%20Dungeon%20Level.mp3" autoplay controls></audio>-->
+
+    <h1>the editor</h1>
+    <p>the game editor !!!!</p>
+
+    <form method="post">
+        <input type="hidden" name="submission" value="true">
+        <fieldset>
+            <legend>details</legend>
+
+            <p>
+                <label for="title">title *</label>
+                <input type="text" name="title" id="title" />
+            </p>
+            
+            <p>
+                <label for="platform">platform *</label>
+                <select name="platform" id="platform">
+                    <optgroup label="Nintendo">
+                        <!-- Nintendo home consoles -->
+                        <option value="nes">NES / Famicom</option>
+                        <option value="snes">SNES / Super Famicom</option>
+                        <option value="n64">Nintendo 64</option>
+                        <option value="gc">GameCube</option>
+                        <option value="wii">Wii</option>
+                        <option value="wiiu">Wii U</option>
+                        <option value="switch">Nintendo Switch</option>
+                        <!-- Nintendo handhelds -->
+                        <option value="gameboy">Game Boy</option>
+                        <option value="gbc">Game Boy Colo(u)r</option>
+                        <option value="gba">Game Boy Advance</option>
+                        <option value="nds">Nintendo DS</option>
+                        <option value="3ds">Nintendo 3DS</option>
+                    </optgroup>
+
+                    <optgroup label="Sony PlayStation">
+                        <!-- PlayStation home consoles -->
+                        <option value="ps">PlayStation</option>
+                        <option value="ps2">PlayStation 2</option>
+                        <option value="ps3">PlayStation 3</option>
+                        <option value="ps4">PlayStation 4</option>
+                        <option value="ps5">PlayStation 5</option>
+                        <!-- PlayStation handhelds -->
+                        <option value="psp">PlayStation Portable</option>
+                        <option value="psv">PlayStation Vita</option>
+                    </optgroup>
+
+                    <optgroup label="Xbox">
+                        <!-- Xbox -->
+                        <option value="xbox">Xbox</option>
+                        <option value="xbox360">Xbox 360</option>
+                        <option value="xboxone">Xbox One</option>
+                        <option value="xboxseries">Xbox Series X|S</option>
+                    </optgroup>
+
+                    <optgroup label="Mobile">
+                        <!-- Mobile -->
+                        <option value="ios">iOS</option>
+                        <option value="android">Android</option>
+                        <option value="mobile">Mobile (other)</option>
+                    </optgroup>
+
+                    <optgroup label="Other">
+                        <!-- PC -->
+                        <option value="pc">PC</option>
+                    </optgroup>
+
+                </select>
+            </p>
+
+            <p>
+                <input type="checkbox" name="physical" id="physical">
+                <label for="physical">physical?</label>
+
+                <input type="checkbox" name="compilation" id="compilation">
+                <label for="compilation">part of a compilation?</label>
+            </p>
+
+            <p>
+                <label for="publisher">publisher</label>
+                <input type="text" name="publisher" id="publisher" />
+            </p>
+            
+            <p>
+                <label for="date">release date</label>
+                <input type="date" name="date" id="date" />
+            </p>
+            
+            <p>
+                <label for="progress">progress</label>
+                <input type="range" min="0" max="3" step="1" value="0" name="progress" id="progress">
+                <p>(it goes unplayed, started, finished, mastered)</p>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>artwork</legend>
+
+            <p>
+                <label for="art">front cover</label>
+                <input type="file" name="art" id="art" />
+            </p>
+        </fieldset>
+
+        <input type="submit" value="submit!">
+    </form>
+
+</main>
+
+<%- include('../partials/footer') %>
+
+<script>
+
+</script>
+</body>
+</html>

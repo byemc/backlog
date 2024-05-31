@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main>
+<!--        <audio src="/backlog/8bit%20Dungeon%20Level.mp3" autoplay controls></audio>-->
+
+        <h1>the backlog</h1>
+        <p>bye has too many games. here's all of them listed.</p>
+
+        <div id="controls">
+            <button>sort by release date</button>
+            <button>sort by title</button>
+            <button>sort by completion</button>
+        </div>
+
+        <h2>the list</h2>
+        <section id="theList"></section>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script>
+        async function progNumberToLabel(n) {
+            switch (n) {
+                case 0:
+                    return "unplayed";
+                case 1:
+                    return "started";
+                case 2:
+                    return "finished";
+                case 3:
+                    return "mastered";
+
+                default:
+                    return "unplayed";
+            }
+        }
+
+        async function platformToLabel(p) {
+            let output = "";
+            switch (p) {
+                case "nes":
+                    return "NES / Famicom";
+                case "snes":
+                    return "SNES / Super Famicom";
+                case "n64":
+                    return "Nintendo 64";
+                case "gc":
+                    return "GameCube";
+                case "wiiu":
+                    output = " U";
+                case "wii":
+                    output = "Nintendo Wii" + output;
+                    return output;
+                case "switch":
+                    return "Nintendo Switch";
+                case "gb":
+                    return "Game Boy";
+                case "gbc":
+                    return "Game Boy Colour";
+                case "gba":
+                    return "Game Boy Advance";
+                case "nds":
+                    return "Nintendo DS";
+                case "3ds":
+                    return "Nintendo 3DS";
+
+                case "ps":
+                    return "PlayStation";
+                case "ps2":
+                    return "PlayStation 2"
+                case "ps3":
+                    return "PlayStation 3"
+                case "ps4":
+                    return "PlayStation 4"
+                case "ps5":
+                    return "PlayStation 5"
+                case "psv":
+                    return "PlayStation Vita"
+                case "psp":
+                    return "PlayStation Portable"
+
+                case "xbox":
+                    return "Xbox";
+                case "xbox360":
+                    return "Xbox 360";
+                case "xboxone":
+                    return "Xbox One";
+                case "xboxseries":
+                    return "Xbox Series X|S";
+
+                case "ios":
+                    return "iOS/iPhoneOS";
+                case "android":
+                    return "Android";
+                case "mobile":
+                    return "Other Mobile";
+
+                case "pc":
+                    return "PC";
+
+                default:
+                    return p;
+            }
+        }
+
+        async function buildGameChip(game) {
+            const title = game.title;
+            const platform = game.platform;
+            const publisher = game.publisher;
+            const date = game.release_date;
+            const progress = game.progress;
+
+            const chip = document.createElement("div");
+            chip.classList = "chip";
+
+            const image = new Image();
+            image.src = "";
+
+            const info = document.createElement("div");
+            info.classList = "info";
+
+            const titleSpan = document.createElement("h3");
+
+            const platformSpan = document.createElement("p");
+            const publisherSpan = document.createElement("p");
+            const progressSpan = document.createElement("p");
+            const dateSpan = document.createElement("time");
+
+            titleSpan.innerText = title;
+            info.appendChild(titleSpan);
+
+            platformSpan.innerText = await platformToLabel(platform);
+            info.appendChild(platformSpan);
+
+            publisherSpan.innerText = publisher;
+            info.appendChild(publisherSpan);
+
+            progressSpan.innerText = await progNumberToLabel();
+            info.appendChild(progressSpan);
+
+            dateSpan.innerText = new Date(date).toDateString();
+            info.appendChild(dateSpan);
+
+            chip.appendChild(image);
+            chip.appendChild(info);
+
+            return chip;
+        }
+
+        async function refreshGameList() {
+            document.getElementById("theList").innerText = "loading..."
+
+            const req = await fetch("/backlog/api/getGames");
+            const list = await req.json()
+
+            document.getElementById("theList").innerText = "";
+            for (const game of list) {
+                document.getElementById('theList').appendChild(await buildGameChip(game));
+            }
+        }
+
+        refreshGameList();
+    </script>
+</body>
+</html>

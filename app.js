@@ -58,7 +58,7 @@ app.get('/backlog/', (req, res) => {
 
 app.post('/backlog/editor', isAuthenticated,
     body("title", "No title supplied")
-        .trim().isLength({ min: 1, max: 255 }).escape(),
+        .trim().isLength({ min: 1, max: 255 }),
     body("platform", "Platform is required")
         .trim().toLowerCase().escape(),
     body("publisher")

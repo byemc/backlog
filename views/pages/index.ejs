@@ -138,7 +138,7 @@
             platformSpan.innerText = await platformToLabel(platform);
             info.appendChild(platformSpan);
 
-            publisherSpan.innerText = publisher;
+            publisherSpan.innerHTML = publisher;
             info.appendChild(publisherSpan);
 
             progressSpan.innerText = await progNumberToLabel();
